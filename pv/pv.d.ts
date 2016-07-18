@@ -178,3 +178,7 @@ declare module pv {
   }
 
 }
+
+declare module 'bio-pv' {
+  export = pv;
+}
