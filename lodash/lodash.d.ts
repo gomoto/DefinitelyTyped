@@ -1,4 +1,4 @@
-// Type definitions for Lo-Dash
+// Type definitions for Lo-Dash 4.14
 // Project: http://lodash.com/
 // Definitions by: Brian Zengel <https://github.com/bczengel>, Ilya Mochalov <https://github.com/chrootsu>, Stepan Mikhaylyuk <https://github.com/stepancar>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -1999,6 +1999,18 @@ declare module _ {
          */
         flattenDeep<T>(): LoDashExplicitArrayWrapper<T>;
     }
+
+    // _.flattenDepth
+    interface LoDashStatic {
+        /**
+        * Recursively flatten array up to depth times.
+        *
+        * @param array The array to recursively flatten.
+        * @param number The maximum recursion depth.
+        * @return Returns the new flattened array.
+        */
+        flattenDepth<T>(array: ListOfRecursiveArraysOrValues<T>, depth?: number): T[];
+     }
 
     //_.fromPairs
     interface LoDashStatic {
@@ -8547,6 +8559,21 @@ declare module _ {
             callback: MemoIterator<TValue, TResult>): TResult;
     }
 
+    interface LoDashExplicitObjectWrapper<T> {
+        /**
+        * @see _.reduce
+        **/
+        reduce<TValue, TResult>(
+            callback: MemoIterator<TValue, TResult>,
+            accumulator: TResult): LoDashExplicitObjectWrapper<TResult>;
+
+        /**
+        * @see _.reduce
+        **/
+        reduce<TValue, TResult>(
+            callback: MemoIterator<TValue, TResult>): LoDashExplicitObjectWrapper<TResult>;
+    }
+
     //_.reduceRight
     interface LoDashStatic {
         /**
@@ -13450,29 +13477,26 @@ declare module _ {
 
         /**
          * @see _.sumBy
-         **/
-        sumBy<T>(
-            collection: Dictionary<T>,
-            iteratee: DictionaryIterator<T, number>
-        ): number;
-
-        /**
-         * @see _.sumBy
          */
-        sumBy<T>(
-            collection: List<number>|Dictionary<number>,
+        sumBy(
+            collection: List<{}>,
             iteratee: string
         ): number;
 
         /**
          * @see _.sumBy
          */
-        sumBy<T>(collection: List<T>|Dictionary<T>): number;
+        sumBy(
+            collection: List<number>
+        ): number;
 
         /**
          * @see _.sumBy
          */
-        sumBy(collection: List<number>|Dictionary<number>): number;
+        sumBy(
+            collection: List<{}>,
+            iteratee: Dictionary<{}>
+        ): number;
     }
 
     interface LoDashImplicitArrayWrapper<T> {
@@ -13491,15 +13515,15 @@ declare module _ {
         /**
          * @see _.sumBy
          */
-        sumBy(): number;
+        sumBy(iteratee: Dictionary<{}>): number;
     }
 
     interface LoDashImplicitObjectWrapper<T> {
         /**
          * @see _.sumBy
-         **/
-        sumBy<TValue>(
-            iteratee: ListIterator<TValue, number>|DictionaryIterator<TValue, number>
+         */
+        sumBy(
+            iteratee: ListIterator<{}, number>
         ): number;
 
         /**
@@ -13510,7 +13534,7 @@ declare module _ {
         /**
          * @see _.sumBy
          */
-        sumBy(): number;
+        sumBy(iteratee: Dictionary<{}>): number;
     }
 
     interface LoDashExplicitArrayWrapper<T> {
@@ -13530,14 +13554,19 @@ declare module _ {
          * @see _.sumBy
          */
         sumBy(): LoDashExplicitWrapper<number>;
+
+        /**
+         * @see _.sumBy
+         */
+        sumBy(iteratee: Dictionary<{}>): LoDashExplicitWrapper<number>;
     }
 
     interface LoDashExplicitObjectWrapper<T> {
         /**
          * @see _.sumBy
          */
-        sumBy<TValue>(
-            iteratee: ListIterator<TValue, number>|DictionaryIterator<TValue, number>
+        sumBy(
+            iteratee: ListIterator<{}, number>
         ): LoDashExplicitWrapper<number>;
 
         /**
@@ -13548,7 +13577,7 @@ declare module _ {
         /**
          * @see _.sumBy
          */
-        sumBy(): LoDashExplicitWrapper<number>;
+        sumBy(iteratee: Dictionary<{}>): LoDashExplicitWrapper<number>;
     }
 
     /**********
@@ -19399,15 +19428,10 @@ declare module "lodash/flattenDeep" {
    export = flattenDeep;
 }
 
-/**
-* uncoment it if definition exists
-*/
-/*
 declare module "lodash/flattenDepth" {
    const flattenDepth: typeof _.flattenDepth;
    export = flattenDepth;
 }
-*/
 
 declare module "lodash/flip" {
    const flip: typeof _.flip;
