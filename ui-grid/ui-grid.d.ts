@@ -927,6 +927,12 @@ declare namespace uiGrid {
          */
         notifyDataChange(type: string): void;
         /**
+         * Refresh the rendered grid on screen.
+         *
+         * @param {boolean} [rowsAltered] Optional flag for refreshing when the number of rows has changed.
+         */
+        refresh(rowsAltered?: boolean): ng.IPromise<any>;
+        /**
          * Refresh the rendered rows on screen?  Note: not functional at present
          * @returns {ng.IPromise<any>} promise that is resolved when render completes?
          */
@@ -3866,6 +3872,10 @@ declare namespace uiGrid {
         /** String that will be set to the <input>.placeholder attribute */
         placeholder?: string;
         /**
+         * String that will be set to the <input>.ariaLabel attribute. This is what is read as a label to screen reader users.
+         */
+        ariaLabel?: string;
+        /**
          * set this to true if you have defined a custom function in condition,
          * and your custom function doesn't require a term
          * (so it can run even when the term is null)
@@ -3889,7 +3899,7 @@ declare namespace uiGrid {
          * If set to true then the 'x' button that cancels/clears the filter will not be shown.
          * @default false
          */
-        disableCancelButton?: boolean;
+        disableCancelFilterButton?: boolean;
     }
     export interface ISelectOption {
         value: number | string;
