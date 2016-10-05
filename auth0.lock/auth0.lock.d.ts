@@ -3,7 +3,7 @@
 // Definitions by: Brian Caruso <https://github.com/carusology>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-/// <reference path="../auth0/auth0.d.ts" />
+/// <reference path="../auth0-js/auth0-js.d.ts" />
 
 interface Auth0LockAdditionalSignUpFieldOption {
   value: string;
@@ -92,7 +92,7 @@ interface Auth0LockConstructorOptions {
     initialScreen?: "login" | "signUp" | "forgotPassword";
     language?: string;
     languageDictionary?: any;
-    loginAfterSignup?: boolean;
+    loginAfterSignUp?: boolean;
     mustAcceptTerms?: boolean;
     popupOptions?: Auth0LockPopupOptions;
     prefill?: { email?: string, username?: string};
